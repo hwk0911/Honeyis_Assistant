@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
 
     @GetMapping("/")
-    public String signIn () {
-        return "signIn";
+    public String index () {
+        return "index";
     }
 
-    @GetMapping("/signup")
+    @GetMapping("/users/signup")
     public String signUp () {
         return "signUp";
     }
 
-    @GetMapping("/CSS/signin.css")
-    public String Css () {
-        return "/templates/sign.css";
+    @GetMapping("/users/signin")
+    public String signIn () {
+        return"signin";
     }
 }
