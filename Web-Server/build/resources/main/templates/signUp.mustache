@@ -1,0 +1,41 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+{{>layout/header}}
+
+<body>
+<div id="signup">
+    <div class="container">
+        <div id="login-row" class="row justify-content-center align-items-center">
+            <div class="col-md-6">
+                <div class="col-md-12">
+                    <form>
+                        <h3 class="text-center text-info">Sign-Up</h3>
+                        <div class="form-group">
+                            <label for="userId">ID:</label><br>
+                            <input type="text" class="form-control" id="userId" placeholder="ID">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">PASSWORD:</label>
+                            <input type="password" class="form-control" id="password" placeholder="PASSWORD">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">COMPANY:</label>
+                            <input type="text" class="form-control" id="company" placeholder="COMPANY">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">E-MAIL:</label>
+                            <input type="email" class="form-control" id="email" placeholder="E-MAIL">
+                        </div>
+                    </form>
+                    <a href = "/" role = "button" class = "btn btn-secondary"> 취소 </a>
+                    <button type = "button" class = "btn btn-primary" id = "btn-signup"> 가입 완료 </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+{{>layout/footer}}
