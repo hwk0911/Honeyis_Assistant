@@ -27,22 +27,28 @@ function uploadFiles(e) {
     e.dataTransfer = e.originalEvent.dataTransfer; //2
     var files = e.target.files || e.dataTransfer.files;
 
-    var data = new FormData(files);
+    var formData = new FormData();
 
-    alert('asdfadsfads');
+    for (var index = 0, size = files.length; index < size; ++index) {
+        formData.append("files", files[index]);
+    }
 
     $.ajax({
         type: "POST",
-            enctype: 'multipart/form-data',
-            url: "/api/v1/filesup",
-            data: data,
-            processData: false,
-            contentType: false,
-            cache: false,
-            timeout: 600000
-    }).done(function () {
-        alert('파일 전송이 완료되었습니다.');
-    }).fail(function (error) {
-        alert(error);
+        url: "/api/va/filesup",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            if (data.result) {
+                alert("Success");
+            }
+            else {
+                alert(data.result);
+            }
+        },
+        err: function (err) {
+            alert(err.status);
+        }
     });
 }
