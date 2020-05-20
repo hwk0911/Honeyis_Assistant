@@ -27,8 +27,6 @@ function uploadFiles(e) {
     e.dataTransfer = e.originalEvent.dataTransfer; //2
     var files = e.target.files || e.dataTransfer.files;
 
-    alert(files[0].name);
-
     var formData = new FormData();
 
     for (var index = 0, size = files.length; index < size; ++index) {
