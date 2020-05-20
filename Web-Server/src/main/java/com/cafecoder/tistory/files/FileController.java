@@ -22,6 +22,7 @@ public class FileController {
             }
         }
 
+        multipartFiles = null;
         XlsxProcessor xlsxProcessor = new XlsxProcessor(this.multipartFiles);
     }
 
