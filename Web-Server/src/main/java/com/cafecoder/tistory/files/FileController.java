@@ -12,7 +12,7 @@ import java.util.List;
 public class FileController {
     private List<MultipartFile> multipartFiles;
 
-    @PostMapping("/api/va/filesup")
+    @PostMapping("/api/va/orderfilesup")
     public void getFiles (@RequestParam(value = "files") List<MultipartFile> multipartFiles) {
         this.multipartFiles = new ArrayList<>();
 

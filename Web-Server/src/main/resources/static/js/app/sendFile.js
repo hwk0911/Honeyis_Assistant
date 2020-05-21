@@ -1,4 +1,4 @@
-$('.content')
+$('.send')
     .on("dragover", dragOver)
     .on("dragleave", dragOver)
     .on("drop", uploadFiles);
@@ -35,7 +35,7 @@ function uploadFiles(e) {
 
     $.ajax({
         type: "POST",
-        url: "/api/va/filesup",
+        url: "/api/va/sendfilesup",
         data: formData,
         processData: false,
         contentType: false,
