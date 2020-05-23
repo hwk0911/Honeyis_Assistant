@@ -11,21 +11,19 @@
         <div id="login-row" class="row justify-content-center align-items-center">
             <div class ="col-md-6">
                 <div class ="col-md-12">
-                    <form id="login-form" class="form" action="" method="post">
+                    <form>
                         <h3 class="text-center text-info">Login</h3>
                         <div class="form-group">
                             <label for="username" class="text-info">ID@EMAIL.COM</label><br>
-                            <input type="email" name="username" id="username" class="form-control" placeholder="ID@EMAIL.COM">
+                            <input type="email" id="userId" class="form-control" placeholder="ID@EMAIL.COM">
                         </div>
                         <div class="form-group">
                             <label for="password" class="text-info">PASSWORD</label><br>
-                            <input type="password" name="password" id="password" class="form-control" placeholder="PASSWORD">
-                        </div>
-                        <div class="form-group">
-                            <label for="remember-me" class="text-info"><span>REMEMBER ME</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                            <button type = "button" class = "btn btn-primary" id = "btn-submit">SUBMIT</button>
+                            <input type="password" id="password" class="form-control" placeholder="PASSWORD">
                         </div>
                     </form>
+                    <button type = "button" class = "btn btn-primary" id = "btn-signin"> Login </button>
+                    <a href = "/" role = "button" class = "btn btn-primary"> 아이디 / 비밀번호 찾기 </a>
                 </div>
             </div>
         </div>
