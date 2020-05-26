@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
 @Entity
 @Getter
 public class Users {
@@ -24,14 +23,10 @@ public class Users {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String company;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String email;
-
     @Builder
     public Users(String userId, String password, String company, String email) {
         this.userId = userId;
         this.password = password;
         this.company = company;
-        this.email = email;
     }
 }
