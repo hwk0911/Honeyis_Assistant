@@ -35,7 +35,6 @@ public class UserRepositoryTest {
                 .userId(userId)
                 .password(password)
                 .company(company)
-                .email(email)
                 .build());
 
         //when
@@ -46,6 +45,5 @@ public class UserRepositoryTest {
         assertThat(users.getUserId()).isEqualTo(userId);
         assertThat(users.getPassword()).isEqualTo(password);
         assertThat(users.getCompany()).isEqualTo(company);
-        assertThat(users.getEmail()).isEqualTo(email);
     }
 }
