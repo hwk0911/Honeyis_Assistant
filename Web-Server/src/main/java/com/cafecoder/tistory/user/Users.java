@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@NoArgsConstructor
 @Entity
 @Getter
 public class Users {
@@ -24,7 +25,7 @@ public class Users {
     private String company;
 
     @Builder
-    public Users(String userId, String password, String company, String email) {
+    public Users(String userId, String password, String company) {
         this.userId = userId;
         this.password = password;
         this.company = company;
