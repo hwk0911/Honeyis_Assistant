@@ -14,15 +14,12 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(HttpSession session, Model model) {
-        System.out.println(session.getId());
 
         if (!session.getAttributeNames().hasMoreElements()) {
             return "redirect:/users/signin";
         }
 
         this.userId = session.getAttributeNames().nextElement();
-        System.out.println(session.getAttribute(userId));
-
         model.addAttribute(session.getAttribute(userId));
 
         return "index";
@@ -36,12 +33,20 @@ public class IndexController {
     }
 
     @GetMapping("/users/signup")
-    public String signUp() {
+    public String signUp(HttpSession session) {
+        if(session.getAttributeNames().hasMoreElements()) {
+            return "redirect:/";
+        }
+
         return "signup";
     }
 
     @GetMapping("/users/signin")
-    public String signIn() {
+    public String signIn(HttpSession session) {
+        if(session.getAttributeNames().hasMoreElements()) {
+            return "redirect:/";
+        }
+
         return "signin";
     }
 }

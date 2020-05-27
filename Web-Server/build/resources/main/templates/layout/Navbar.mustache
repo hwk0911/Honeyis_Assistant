@@ -11,11 +11,12 @@
                 {{^ users}}
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                        aria-haspopup="true" aria-expanded="false">
-                        SignIn / SignUp
+                        Sign In / Sign Up
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/users/signin">sign in</a>
-                            <a class="dropdown-item" href="/users/signup">sign up</a>
+                            <a class="dropdown-item" href="/users/signin">Sign In</a>
+                            <a class="dropdown-item" href="/users/signup">Sign Up</a>
+                    </div>
                 {{/ users}}
                 {{# users}}
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -23,9 +24,9 @@
                         {{userId}}님 환영합니다.
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/users/signout">Sign out</a>
+                        <a class="dropdown-item" href="/users/signout">Sign Out</a>
+                    </div>
                 {{/ users}}
-                </div>
             </li>
         </ul>
     </div>
