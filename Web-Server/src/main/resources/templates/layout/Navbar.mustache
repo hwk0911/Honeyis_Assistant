@@ -13,10 +13,14 @@
                     Sign
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {{^ users}}
                     <a class="dropdown-item" href="/users/signin">sign in</a>
                     <a class="dropdown-item" href="/users/signup">sign up</a>
+                    {{/ users}}
+                    {{# users}}
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Sign out</a>
+                    <a class="dropdown-item" href="/users/signout">{{userId}} Sign out</a>
+                    {{/ users}}
                 </div>
             </li>
         </ul>

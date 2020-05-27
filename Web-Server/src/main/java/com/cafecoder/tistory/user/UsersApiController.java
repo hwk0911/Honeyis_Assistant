@@ -3,10 +3,7 @@ package com.cafecoder.tistory.user;
 import com.cafecoder.tistory.service.UsersService;
 import com.cafecoder.tistory.user.dto.UsersSaveRequestDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.*;
@@ -43,8 +40,8 @@ public class UsersApiController {
             return null;
         }
 
-
         session.setAttribute("user", user);
+        System.out.println("test: " + session.getId());
         return user.getId();
     }
 }
