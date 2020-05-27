@@ -62,7 +62,6 @@ public class UsersApiControllerTest {
         assertThat(all.get(0).getUserId()).isEqualTo(userId);
         assertThat(all.get(0).getPassword()).isEqualTo(password);
         assertThat(all.get(0).getCompany()).isEqualTo(company);
-        assertThat(all.get(0).getEmail()).isEqualTo(email);
 
     }
 }

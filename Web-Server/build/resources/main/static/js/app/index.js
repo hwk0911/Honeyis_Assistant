@@ -46,6 +46,7 @@ var main = {
             password: $('#password').val()
         }
 
+
         var checkEamil = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         if(!data.userId || !data.password) {
@@ -61,9 +62,9 @@ var main = {
                 dataType: 'json',
                 contentType: 'application/json; charset = utf-8',
                 data: JSON.stringify(data)
-            }).done(function() {              
-                alert('Signin Sucess');  
-                window.location.href = '/';
+            }).done(function() {
+                alert('Login Sucess');
+                window.location.href = "/";
             }).fail(function (error) {
                 alert(JSON.stringify(error));
             });
