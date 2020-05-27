@@ -8,19 +8,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    Sign
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    {{^ users}}
-                    <a class="dropdown-item" href="/users/signin">sign in</a>
-                    <a class="dropdown-item" href="/users/signup">sign up</a>
-                    {{/ users}}
-                    {{# users}}
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/users/signout">{{userId}} Sign out</a>
-                    {{/ users}}
+                {{^ users}}
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        SignIn / SignUp
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/users/signin">sign in</a>
+                            <a class="dropdown-item" href="/users/signup">sign up</a>
+                {{/ users}}
+                {{# users}}
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        {{userId}}님 환영합니다.
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/users/signout">Sign out</a>
+                {{/ users}}
                 </div>
             </li>
         </ul>
