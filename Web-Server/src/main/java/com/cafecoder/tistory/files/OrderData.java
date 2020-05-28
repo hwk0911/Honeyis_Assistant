@@ -14,14 +14,11 @@ public class OrderData {
     private String size;
     private int amount;
 
-    public OrderData(String dataList) {
-        System.out.println(dataList);
-        String[] data = dataList.split(" ");
+    public OrderData(List<String> data) {
+        this.date = data.get(0);
+        this.productName = data.get(1);
 
-        this.date = data[0];
-        this.productName = data[1];
-
-        String option = data[2];
+        String option = data.get(2);
         this.color = new ArrayList<>();
         for(String temp : option.split("/")) {
             if(!temp.contains("1개")) {
@@ -34,9 +31,15 @@ public class OrderData {
             }
         }
 
-        this.amount = Integer.parseInt(data[3]);
+        if(this.size == null) {
+            this.size = "free";
+        }
+
+        this.amount = Integer.parseInt(data.get(3).split("\\.")[0]);
         this.dateValue = this.getDateValue();
     }
+
+
 
     public Long getDateValue () {
         Long dateTime = 0L;

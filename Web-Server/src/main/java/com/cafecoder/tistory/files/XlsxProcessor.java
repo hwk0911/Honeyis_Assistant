@@ -12,7 +12,7 @@ import java.util.List;
 
 public class XlsxProcessor {
     private List<XSSFWorkbook> workbooks;
-    private List<String> dataList;
+    private List<List<String>> dataList;
     private List<Integer> columns;
 
     public XlsxProcessor(List<MultipartFile> files) {
@@ -76,19 +76,19 @@ public class XlsxProcessor {
             int maxRow = sheet.getPhysicalNumberOfRows();
 
             for(int index = 1 ; index < maxRow ; ++index) {
-                StringBuilder sb = new StringBuilder();
+                List<String> tempData = new ArrayList<>();
                 XSSFRow row = sheet.getRow(index);
 
                 for(int cellNum : this.columns) {
                     XSSFCell cell = row.getCell(cellNum);
-                    sb.append(cell.toString() + " ");
+                    tempData.add(cell.toString());
                 }
-                this.dataList.add(sb.toString());
+                this.dataList.add(tempData);
             }
         }
     }
 
-    public List<String> getDataList () {
+    public List<List<String>> getDataList () {
         return this.dataList;
     }
 }
