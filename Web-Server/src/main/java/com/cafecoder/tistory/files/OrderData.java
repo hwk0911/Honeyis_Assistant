@@ -39,8 +39,6 @@ public class OrderData {
         this.dateValue = this.getDateValue();
     }
 
-
-
     public Long getDateValue () {
         Long dateTime = 0L;
 
