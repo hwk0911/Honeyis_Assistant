@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -24,6 +25,19 @@ public class FileController {
 
         multipartFiles = null;
         XlsxProcessor xlsxProcessor = new XlsxProcessor(this.multipartFiles);
+
+        List<String> dataList = xlsxProcessor.getDataList();
+        Collections.sort(dataList);
+        List<OrderData> orderList = new ArrayList<>();
+
+
+        for(String data : xlsxProcessor.getDataList()) {
+            orderList.add(new OrderData(data));
+        }
+
+        for(OrderData orderData : orderList) {
+            System.out.println(orderData.toString());
+        }
     }
 
     public List<MultipartFile> getMultipartFiles () {
