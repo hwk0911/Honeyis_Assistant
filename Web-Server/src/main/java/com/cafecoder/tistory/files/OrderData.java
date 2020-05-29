@@ -21,7 +21,7 @@ public class OrderData {
         String option = data.get(2);
         this.color = new ArrayList<>();
         for(String temp : option.split("/")) {
-            if(!temp.contains("1개")) {
+            if(!temp.contains("1개") && !temp.contains("단품")) {
                 if(!temp.toUpperCase().equals("FREE")) {
                     this.color.add(temp);
                 }
@@ -38,8 +38,6 @@ public class OrderData {
         this.amount = Integer.parseInt(data.get(3).split("\\.")[0]);
         this.dateValue = this.getDateValue();
     }
-
-
 
     public Long getDateValue () {
         Long dateTime = 0L;
@@ -67,5 +65,25 @@ public class OrderData {
         sb.append(this.amount);
 
         return sb.toString();
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public List<String> getColor() {
+        return color;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 }

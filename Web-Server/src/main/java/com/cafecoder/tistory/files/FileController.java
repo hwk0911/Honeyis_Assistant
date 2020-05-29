@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @RestController
 public class FileController {
     private List<MultipartFile> multipartFiles;
     private List<List<String>> dataList;
+    private HashMap<String, HashMap<String, Integer>> orderHashMap;
 
     @PostMapping("/api/va/orderfilesup")
     public void getFiles (@RequestParam(value = "files") List<MultipartFile> multipartFiles) {
@@ -24,53 +24,72 @@ public class FileController {
         }
 
         multipartFiles = null;
+
         XlsxProcessor xlsxProcessor = new XlsxProcessor(this.multipartFiles);
 
         this.dataList = xlsxProcessor.getDataList();
-        //this.sortList(0, dataList.size());
         List<OrderData> orderList = new ArrayList<>();
-
 
         for(List<String> data : dataList) {
             orderList.add(new OrderData(data));
         }
 
-        for(OrderData orderData : orderList) {
-            System.out.println(orderData.toString());
+        Collections.sort(orderList, new Comparator<OrderData>() {
+            @Override
+            public int compare(OrderData o1, OrderData o2) {
+                return (int)(o1.getDateValue() - o2.getDateValue());
+            }
+        });
+
+        this.setOrderHashMap(orderList);
+
+        Iterator<String> itr = this.orderHashMap.keySet().iterator();
+
+        while(itr.hasNext()) {
+            String productName = itr.next();
+            HashMap<String, Integer> optionMap = this.orderHashMap.get(productName);
+
+            System.out.println(productName);
+            Iterator<String> optionItr = optionMap.keySet().iterator();
+
+            while(optionItr.hasNext()) {
+                String color = optionItr.next();
+
+                System.out.println(color + "\t\t" + optionMap.get(color));
+            }
+
+            System.out.println();
         }
     }
 
-    public List<MultipartFile> getMultipartFiles () {
-        return this.multipartFiles;
-    }
+    private void setOrderHashMap (List<OrderData> orderDataList) {
+        HashMap<String, HashMap<String, Integer>> retHashMap = new HashMap<>();
+        HashMap<String, Integer> optionMap = new HashMap<>();
 
-    private void sortList (int start, int end) {
-        int left = start;
-        int right = end;
-        String pivot = this.dataList.get((start + end) / 2).get(0);
+        for(OrderData orderData : orderDataList) {
+            String productName = orderData.getProductName();
 
-        do {
-            while (this.dataList.get(left).get(0).compareTo(pivot) != 1 && left < end) {
-                ++left;
+            if(retHashMap.containsKey(productName)) {
+                optionMap = retHashMap.get(productName);
             }
-            while (this.dataList.get(right).get(0).compareTo(pivot) != -1 && right > start) {
-                --right;
+            else {
+                optionMap = new HashMap<>();
             }
 
-            if(left <= right) {
-                List<String> tempList = this.dataList.get(left);
-                this.dataList.set(left, this.dataList.get(right));
-                this.dataList.set(right, tempList);
-                ++left;
-                --right;
-            }
-        }while (left <= right);
+            for(String color : orderData.getColor()) {
+                int amount = orderData.getAmount();
 
-        if(left < end) {
-            this.sortList(left, end);
+                if(optionMap.containsKey(color)) {
+                    optionMap.put(color, optionMap.get(color) + amount);
+                }
+                else {
+                    optionMap.put(color, amount);
+                }
+            }
+
+            retHashMap.put(productName, optionMap);
         }
-        if(right > start) {
-            this.sortList(start, right);
-        }
+
+        this.orderHashMap = retHashMap;
     }
 }
