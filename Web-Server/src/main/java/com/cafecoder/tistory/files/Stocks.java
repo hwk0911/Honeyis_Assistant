@@ -5,14 +5,15 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @NoArgsConstructor
 @Entity
 @Getter
 public class Stocks {
 
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String userId;
+    @Id
+    private Long id;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String productName;
