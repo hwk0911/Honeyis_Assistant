@@ -49,4 +49,28 @@ public class IndexController {
 
         return "signin";
     }
+
+    @GetMapping("/users/stock")
+    public String stock(HttpSession session, Model model) {
+        if (!session.getAttributeNames().hasMoreElements()) {
+            return "redirect:/users/signin";
+        }
+
+        this.userId = session.getAttributeNames().nextElement();
+        model.addAttribute(session.getAttribute(userId));
+
+        return "stockList";
+    }
+
+    @GetMapping("/users/stockInput")
+    public String inputStock(HttpSession session, Model model) {
+        if (!session.getAttributeNames().hasMoreElements()) {
+            return "redirect:/users/signin";
+        }
+
+        this.userId = session.getAttributeNames().nextElement();
+        model.addAttribute(session.getAttribute(userId));
+
+        return "inputStocks";
+    }
 }
