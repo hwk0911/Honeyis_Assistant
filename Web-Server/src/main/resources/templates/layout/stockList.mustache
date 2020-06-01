@@ -10,11 +10,12 @@
         </tr>
         </thead>
         <tbody>
+        {{#stocks}}
         <tr>
-            <th scope="row">[찰떡핏/기본템] 도톰 브이넥 반팔니트</th>
-            <td>베이지</td>
-            <td>FREE</td>
-            <td>16</td>
+            <th scope="row">{{productName}}</th>
+            <td>{{color}}</td>
+            <td>{{size}}</td>
+            <td>{{amount}}</td>
             <form>
                 <th class="form-group">
                     <input type="text" id="amount" class="form-control" placeholder="amount">
@@ -24,6 +25,7 @@
                 <button type="button" class="btn btn-primary" id="btn-stockSave">수량 추가</button>
             </td>
         </tr>
+        {{/stocks}}
         </tbody>
     </table>
 </div>
