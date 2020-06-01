@@ -1,26 +1,38 @@
 package com.cafecoder.tistory.web;
 
+import com.cafecoder.tistory.files.Stocks;
+import com.cafecoder.tistory.files.StocksRepository;
+import com.cafecoder.tistory.user.Users;
+import com.cafecoder.tistory.user.UsersRepository;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.NoSuchElementException;
 
+@RequiredArgsConstructor
 @Controller
 public class IndexController {
 
+    private String sessionId;
     private String userId;
+    private final StocksRepository stocksRepository;
+    private final UsersRepository usersRepository;
 
     @GetMapping("/")
     public String index(HttpSession session, Model model) {
-
         if (!session.getAttributeNames().hasMoreElements()) {
             return "redirect:/users/signin";
         }
 
-        this.userId = session.getAttributeNames().nextElement();
-        model.addAttribute(session.getAttribute(userId));
+        this.sessionId = session.getAttributeNames().nextElement();
+        this.userId = session.getAttribute(this.sessionId).toString();
+        Users user = this.usersRepository.findByUserId(this.userId);
+
+        model.addAttribute("users", user);
 
         return "index";
     }
@@ -34,7 +46,7 @@ public class IndexController {
 
     @GetMapping("/users/signup")
     public String signUp(HttpSession session) {
-        if(session.getAttributeNames().hasMoreElements()) {
+        if(this.userId != null) {
             return "redirect:/";
         }
 
@@ -43,7 +55,7 @@ public class IndexController {
 
     @GetMapping("/users/signin")
     public String signIn(HttpSession session) {
-        if(session.getAttributeNames().hasMoreElements()) {
+        if(this.userId != null) {
             return "redirect:/";
         }
 
@@ -52,25 +64,14 @@ public class IndexController {
 
     @GetMapping("/users/stock")
     public String stock(HttpSession session, Model model) {
-        if (!session.getAttributeNames().hasMoreElements()) {
-            return "redirect:/users/signin";
+        if (this.userId == null) {
+            return "redirect:/";
         }
 
-        this.userId = session.getAttributeNames().nextElement();
-        model.addAttribute(session.getAttribute(userId));
+        Stocks stocks = this.stocksRepository.findByUserId(this.userId);
 
-        return "stockList";
-    }
+        model.addAttribute("stocks", stocks);
 
-    @GetMapping("/users/stockInput")
-    public String inputStock(HttpSession session, Model model) {
-        if (!session.getAttributeNames().hasMoreElements()) {
-            return "redirect:/users/signin";
-        }
-
-        this.userId = session.getAttributeNames().nextElement();
-        model.addAttribute(session.getAttribute(userId));
-
-        return "inputStocks";
+        return "stocks";
     }
 }

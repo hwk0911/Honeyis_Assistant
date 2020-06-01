@@ -1,0 +1,32 @@
+<div class="container">
+    <table class="table table-hover table-dark">
+        <thead>
+        <tr>
+            <th scope="col" width="500">상품명</th>
+            <th scope="col">색상</th>
+            <th scope="col">사이즈</th>
+            <th scope="col">수량</th>
+            <th scope="col">추가 수량</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#stocks}}
+        <tr>
+            <th scope="row">{{productName}}</th>
+            <td>{{color}}</td>
+            <td>{{size}}</td>
+            <td>{{amount}}</td>
+            <form>
+                <th class="form-group">
+                    <input type="text" id="amount" class="form-control" placeholder="amount">
+                </th>
+            </form>
+            <td>
+                <button type="button" class="btn btn-primary" id="btn-stockSave">수량 추가</button>
+            </td>
+        </tr>
+        {{/stocks}}
+        </tbody>
+    </table>
+</div>
+</br>

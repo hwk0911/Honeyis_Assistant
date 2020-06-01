@@ -1,5 +1,6 @@
 package com.cafecoder.tistory.files;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +14,7 @@ import javax.persistence.Id;
 public class Stocks {
 
     @Id
-    private Long id;
+    private String userId;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String productName;
@@ -26,4 +27,13 @@ public class Stocks {
 
     @Column(columnDefinition = "INT")
     private int amount;
+
+    @Builder
+    public Stocks(String userId, String productName, String color, String size, int amount) {
+        this.userId = userId;
+        this.productName = productName;
+        this.color = color;
+        this.size = size;
+        this.amount = amount;
+    }
 }

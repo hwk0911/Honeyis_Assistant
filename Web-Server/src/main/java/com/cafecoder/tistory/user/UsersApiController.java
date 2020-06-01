@@ -40,8 +40,8 @@ public class UsersApiController {
             return null;
         }
 
-        session.setAttribute("user", user);
-        System.out.println("test: " + session.getId());
+        session.setAttribute("id", userId);
+
         return user.getId();
     }
 }
