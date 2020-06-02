@@ -11,20 +11,20 @@
         </thead>
         <tbody>
         {{#stocks}}
-        <tr>
-            <th scope="row">{{productName}}</th>
-            <td>{{color}}</td>
-            <td>{{size}}</td>
-            <td>{{amount}}</td>
-            <form>
-                <th class="form-group">
-                    <input type="text" id="amount" class="form-control" placeholder="amount">
-                </th>
-            </form>
-            <td>
-                <button type="button" class="btn btn-primary" id="btn-stockSave">수량 추가</button>
-            </td>
-        </tr>
+            <tr>
+                <form name = "addStock" method="post" action="/stock/{{userId}}/{{add}}">
+                    <th scope="row" id="productName" class="form-group">{{productName}}</th>
+                    <td id="color" class="form-group">{{color}}</td>
+                    <td id="size" class="form-group">{{size}}</td>
+                    <td id="amount" class="form-group">{{amount}}</td>
+                    <td class="form-group">
+                        <input type="text" id="add" class="form-control" placeholder="amount">
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-primary" id="btn-addStock">수량 추가</button>
+                    </td>
+                </form>
+            </tr>
         {{/stocks}}
         </tbody>
     </table>
