@@ -69,8 +69,10 @@ public class IndexController {
         }
 
         Stocks stocks = this.stocksRepository.findByUserId(this.userId);
+        Users users = this.usersRepository.findByUserId(this.userId);
 
         model.addAttribute("stocks", stocks);
+        model.addAttribute("users", users);
 
         return "stocks";
     }

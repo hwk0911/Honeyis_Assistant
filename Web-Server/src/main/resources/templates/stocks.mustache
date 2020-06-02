@@ -18,24 +18,30 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th class="form-group">
-                    <input type="text" id="productName" class="form-control" placeholder="productName">
-                </th>
-                <th class="form-group">
-                    <input type="text" id="color" class="form-control" placeholder="color">
-                </th>
-                <th class="form-group">
-                    <input type="text" id="size" class="form-control" placeholder="size">
-                </th>
-                <th class="form-group">
-                    <input type="text" id="amount" class="form-control" placeholder="amount">
-                </th>
-            </tr>
+            <div id="inputForm">
+                <tr>
+                    <th class="form-group">
+                        <input type="text" id="productName" class="form-control" placeholder="productName">
+                    </th>
+                    <th class="form-group">
+                        <input type="text" id="color" class="form-control" placeholder="color">
+                    </th>
+                    <th class="form-group">
+                        <input type="text" id="size" class="form-control" placeholder="size">
+                    </th>
+                    <th class="form-group">
+                        <input type="text" id="amount" class="form-control" placeholder="amount">
+                    </th>
+                </tr>
+            </div>
             </tbody>
         </table>
     </form>
-    <button type="button" class="btn btn-primary" id="btn-stockSave">재고 저장</button>
+    <div align="right">
+        <button type="button" class="btn btn-primary" id="btn-addInput">추가</button>
+        <button type="button" class="btn btn-primary" id="btn-removeInput">삭제</button>
+        <button type="button" class="btn btn-primary" id="btn-stockSave">재고 저장</button>
+    </div>
 </div>
 </br>
 {{>layout/stockList}}

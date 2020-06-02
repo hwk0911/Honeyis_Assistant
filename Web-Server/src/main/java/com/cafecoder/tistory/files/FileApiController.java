@@ -1,5 +1,6 @@
 package com.cafecoder.tistory.files;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.*;
 
 @RestController
-public class FileController {
+public class FileApiController {
     private List<MultipartFile> multipartFiles;
     private List<List<String>> dataList;
     private HashMap<String, HashMap<String, Integer>> orderHashMap;
