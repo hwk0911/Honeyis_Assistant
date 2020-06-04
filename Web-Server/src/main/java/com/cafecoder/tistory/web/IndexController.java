@@ -67,13 +67,24 @@ public class IndexController {
         if (this.userId == null) {
             return "redirect:/";
         }
-
-        Stocks stocks = this.stocksRepository.findByUserId(this.userId);
         Users users = this.usersRepository.findByUserId(this.userId);
 
-        model.addAttribute("stocks", stocks);
+        model.addAttribute("stocks", this.stocksRepository.findByUserId(this.userId));
         model.addAttribute("users", users);
 
         return "stocks";
+    }
+
+    @GetMapping("/users/stockList")
+    public String stockList(HttpSession session, Model model) {
+        if (this.userId == null) {
+            return "redirect:/";
+        }
+        Users users = this.usersRepository.findByUserId(this.userId);
+
+        model.addAttribute("stocks", this.stocksRepository.findByUserId(this.userId));
+        model.addAttribute("users", users);
+
+        return "stockList";
     }
 }
