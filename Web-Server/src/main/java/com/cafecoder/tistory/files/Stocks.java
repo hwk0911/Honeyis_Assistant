@@ -4,17 +4,21 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @NoArgsConstructor
 @Entity
 @Getter
 public class Stocks {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String userId;
+
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String client;
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String productName;
@@ -29,11 +33,18 @@ public class Stocks {
     private int amount;
 
     @Builder
-    public Stocks(String userId, String productName, String color, String size, int amount) {
+    public Stocks(String userId, String client, String productName, String color, String size, int amount) {
+        this.client = client;
         this.userId = userId;
         this.productName = productName;
         this.color = color;
-        this.size = size;
+
+        if(size == null) {
+            this.size = "FREE";
+        }
+        else {
+            this.size = size;
+        }
         this.amount = amount;
     }
 }

@@ -2,28 +2,24 @@
     <table class="table table-hover table-dark">
         <thead>
         <tr>
-            <th scope="col" width="500">상품명</th>
+            <th scope="col">발주처</th>
+            <th scope="col" width="400">상품명</th>
             <th scope="col">색상</th>
             <th scope="col">사이즈</th>
             <th scope="col">수량</th>
-            <th scope="col">추가 수량</th>
         </tr>
         </thead>
         <tbody>
         {{#stocks}}
-            <tr>
-                <form name = "addStock" method="post" action="/stock/{{userId}}/{{add}}">
-                    <th scope="row" id="productName" class="form-group">{{productName}}</th>
-                    <td id="color" class="form-group">{{color}}</td>
-                    <td id="size" class="form-group">{{size}}</td>
-                    <td id="amount" class="form-group">{{amount}}</td>
-                    <td class="form-group">
-                        <input type="text" id="add" class="form-control" placeholder="amount">
-                    </td>
-                    <td>
-                        <button type="submit" class="btn btn-primary" id="btn-addStock">수량 추가</button>
-                    </td>
-                </form>
+            <div style="display:none">
+                <input type="text" id = "client"
+            </div>
+            <tr id="addAmount">
+                <td>{{client}}</td>
+                <td>{{productName}}</td>
+                <td>{{color}}</td>
+                <td>{{size}}</td>
+                <td>{{amount}}</td>
             </tr>
         {{/stocks}}
         </tbody>
