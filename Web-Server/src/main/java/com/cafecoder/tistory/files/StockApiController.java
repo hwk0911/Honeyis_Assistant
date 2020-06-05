@@ -1,42 +1,33 @@
 package com.cafecoder.tistory.files;
 
+import com.cafecoder.tistory.user.Users;
 import lombok.RequiredArgsConstructor;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
 public class StockApiController {
     private final StocksRepository stocksRepository;
 
-    /*
-    @RequestMapping(value = "/addStock", method = RequestMethod.POST)
-    public String addAmount(@RequestBody String productName) {
-        System.out.println(productName);
-
-        Stocks stocks = this.stocksRepository.findByUserIdAndProductNameAndColorAndSize(newStock.getUserId(), newStock.getProductName(), newStock.getColor(), newStock.getSize());
-        Stocks updateStocks = new Stocks().builder()
-                .userId(stocks.getUserId())
-                .productName(stocks.getProductName())
-                .color(stocks.getSize())
-                .size(stocks.getSize())
-                .amount(stocks.getAmount())
-                .build();
-
-        this.stocksRepository.delete(stocks);
-        this.stocksRepository.save(updateStocks);
-
-        return "redirect:/users/stock";
-    }
-    */
-
     @PostMapping("/api/v1/addAmount")
-    public String addAmount(@RequestBody String[] data) {
-        for(String d : data) {
-            System.out.println(d);
-        }
+    public Long addAmount(@RequestBody Map<String, String> userData) {
+        Long id = Long.parseLong(userData.get("id"));
+        Integer addAmount = Integer.parseInt(userData.get("addAmount"));
 
-        return null;
+        System.out.println(id);
+        System.out.println(addAmount);
+
+        Stocks stocks = this.stocksRepository.findById(id).get();
+
+        stocks.addAmount(addAmount);
+        this.stocksRepository.save(stocks);
+        System.out.println(stocks.getAmount());
+
+        return stocks.getId();
     }
 }

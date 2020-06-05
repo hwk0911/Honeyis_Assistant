@@ -47,4 +47,8 @@ public class Stocks {
         }
         this.amount = amount;
     }
+
+    public void addAmount (int addAmount) {
+        this.amount = this.amount + addAmount;
+    }
 }
