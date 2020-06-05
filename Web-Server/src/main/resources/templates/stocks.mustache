@@ -4,8 +4,6 @@
 <!------ Include the above in your HEAD tag ---------->
 
 {{>layout/header}}
-
-
 <div id="inputStock" class="container">
     <form>
         <table class="table table-hover table-dark">
@@ -46,5 +44,46 @@
     </div>
 </div>
 </br>
-{{>layout/stockList}}
+
+
+<div class="container">
+    <table class="table table-hover table-dark">
+        <thead>
+        <tr>
+            <th scope="col">발주처</th>
+            <th scope="col" width="400">상품명</th>
+            <th scope="col">색상</th>
+            <th scope="col">사이즈</th>
+            <th scope="col">수량</th>
+            <th scope="col">추가</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#stocks}}
+                <tr>
+                    <td>{{client}}</td>
+                    <td>{{productName}}</td>
+                    <td>{{color}}</td>
+                    <td>{{size}}</td>
+                    <td>{{amount}}</td>
+                    <td>
+                        <form>
+                            <div class="form-group">
+                                <input type="text" id="addAmount" class="form-control">
+                            </div>
+                            <div style="display:none" class="form-group">
+                                <input type="text" id="id" class="form-control" value="{{id}}" style="display:none">
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-secondary" id="btn-addAmount">수량 추가</button>
+                    </td>
+                </tr>
+        {{/stocks}}
+        </tbody>
+    </table>
+</div>
+</br>
 {{>layout/footer}}
