@@ -11,16 +11,15 @@
         </thead>
         <tbody>
         {{#stocks}}
-            <div style="display:none">
-                <input type="text" id = "client"
+            <div>
+                <tr>
+                    <td>{{client}}</td>
+                    <td>{{productName}}</td>
+                    <td>{{color}}</td>
+                    <td>{{size}}</td>
+                    <td>{{amount}}</td>
+                </tr>
             </div>
-            <tr id="addAmount">
-                <td>{{client}}</td>
-                <td>{{productName}}</td>
-                <td>{{color}}</td>
-                <td>{{size}}</td>
-                <td>{{amount}}</td>
-            </tr>
         {{/stocks}}
         </tbody>
     </table>
