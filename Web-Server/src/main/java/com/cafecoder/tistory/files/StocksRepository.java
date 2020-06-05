@@ -7,6 +7,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface StocksRepository extends JpaRepository<Stocks, Long> {
-    Stocks findByUserIdAndProductNameAndColorAndSize(String userId, String productName, String color, String size);
     List<Stocks> findByUserId(String userId);
 }
