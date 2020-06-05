@@ -7,19 +7,19 @@
             <th scope="col">색상</th>
             <th scope="col">사이즈</th>
             <th scope="col">수량</th>
+            <th scope="col">발주처</th>
         </tr>
         </thead>
         <tbody>
         {{#stocks}}
-            <div>
                 <tr>
                     <td>{{client}}</td>
                     <td>{{productName}}</td>
                     <td>{{color}}</td>
                     <td>{{size}}</td>
                     <td>{{amount}}</td>
+                    <td>{{client}}</td>
                 </tr>
-            </div>
         {{/stocks}}
         </tbody>
     </table>
