@@ -2,32 +2,27 @@ package com.cafecoder.tistory.files;
 
 import com.cafecoder.tistory.user.Users;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class StockApiController {
     private final StocksRepository stocksRepository;
 
-    @PostMapping("/api/v1/addAmount")
-    public Long addAmount(@RequestBody Map<String, String> userData) {
-        Long id = Long.parseLong(userData.get("id"));
-        Integer addAmount = Integer.parseInt(userData.get("addAmount"));
-
-        System.out.println(id);
-        System.out.println(addAmount);
-
+    @RequestMapping(value = "/api/v1/addAmount", method = RequestMethod.POST)
+    public String addAmount(@RequestParam("id") Long id, @RequestParam("inputAmount") Integer inputAmount) throws Exception{
         Stocks stocks = this.stocksRepository.findById(id).get();
 
-        stocks.addAmount(addAmount);
+        stocks.addAmount(inputAmount);
         this.stocksRepository.save(stocks);
-        System.out.println(stocks.getAmount());
 
-        return stocks.getId();
+        return "redirect:/users/stock";
     }
 }
