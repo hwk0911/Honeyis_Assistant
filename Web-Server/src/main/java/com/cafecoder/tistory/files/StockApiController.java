@@ -17,11 +17,24 @@ public class StockApiController {
     private final StocksRepository stocksRepository;
 
     @RequestMapping(value = "/api/v1/addAmount", method = RequestMethod.POST)
-    public String addAmount(@RequestParam("id") Long id, @RequestParam("inputAmount") Integer inputAmount) throws Exception{
+    public String addAmount(@RequestParam("id") Long id, @RequestParam("inputAmount") String inputAmount) throws Exception {
         Stocks stocks = this.stocksRepository.findById(id).get();
 
-        stocks.addAmount(inputAmount);
-        this.stocksRepository.save(stocks);
+        try {
+            stocks.addAmount(Integer.parseInt(inputAmount));
+            this.stocksRepository.save(stocks);
+        }
+        catch (NumberFormatException e) {
+            e.getStackTrace();
+        }
+
+        return "redirect:/users/stock";
+    }
+
+    @RequestMapping(value = "/api/v1/addProduct", method = RequestMethod.POST)
+    public String addProduct(@RequestParam("id") List<Long> id, @RequestParam("inputAmount") List<String> productName) throws Exception {
+        System.out.println(id.get(1));
+        System.out.println(productName.get(1));
 
         return "redirect:/users/stock";
     }
