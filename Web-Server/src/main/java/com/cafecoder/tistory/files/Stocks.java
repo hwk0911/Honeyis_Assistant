@@ -51,4 +51,9 @@ public class Stocks {
     public void addAmount (int addAmount) {
         this.amount = this.amount + addAmount;
     }
+
+    @Override
+    public String toString() {
+        return "[" + this.productName + " " + this.color + " " + this.size + " " + this.amount + "]";
+    }
 }
