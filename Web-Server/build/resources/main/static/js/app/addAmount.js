@@ -1,12 +1,19 @@
 var addAmount = {
     init: function () {
         var _this = this;
-        $('#btn-addAmount').on('click', function () {
+        $(document).on('click','#btn-addAmount', function () {
             _this.addAmount();
         })
     },
 
     addAmount: function () {
+        var ele = document.getElementsByName("id");
+
+        alert(ele.eq(0).value);
+        alert(ele.eq(1).value);
+        alert(ele.eq(2).value);
+
+
         var data = {
             id: $('#id').val(),
             addAmount: $('#addAmount').val()
