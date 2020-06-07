@@ -16,24 +16,24 @@
                 <th scope="col">수량</th>
             </tr>
             </thead>
-            <tbody id = "inputForm">
-                <tr>
-                    <td class="form-group">
-                        <input type="text" id="client" class="form-control" placeholder="client">
-                    </td>
-                    <td class="form-group">
-                        <input type="text" id="productName" class="form-control" placeholder="productName">
-                    </td>
-                    <td class="form-group">
-                        <input type="text" id="color" class="form-control" placeholder="color">
-                    </td>
-                    <td class="form-group">
-                        <input type="text" id="size" class="form-control" placeholder="size">
-                    </td>
-                    <td class="form-group">
-                        <input type="text" id="amount" class="form-control" placeholder="amount">
-                    </td>
-                </tr>
+            <tbody id="inputForm">
+            <tr>
+                <td class="form-group">
+                    <input type="text" id="client" class="form-control" placeholder="client">
+                </td>
+                <td class="form-group">
+                    <input type="text" id="productName" class="form-control" placeholder="productName">
+                </td>
+                <td class="form-group">
+                    <input type="text" id="color" class="form-control" placeholder="color">
+                </td>
+                <td class="form-group">
+                    <input type="text" id="size" class="form-control" placeholder="size">
+                </td>
+                <td class="form-group">
+                    <input type="text" id="amount" class="form-control" placeholder="amount">
+                </td>
+            </tr>
             </tbody>
         </table>
     </form>
@@ -61,26 +61,26 @@
         </thead>
         <tbody>
         {{#stocks}}
-                <tr>
-                    <td>{{client}}</td>
-                    <td>{{productName}}</td>
-                    <td>{{color}}</td>
-                    <td>{{size}}</td>
-                    <td>{{amount}}</td>
+            <tr>
+                <td>{{client}}</td>
+                <td>{{productName}}</td>
+                <td>{{color}}</td>
+                <td>{{size}}</td>
+                <td>{{amount}}</td>
+                <form action="/api/v1/addAmount" method="post">
                     <td>
-                        <form>
-                            <div class="form-group">
-                                <input type="text" id="addAmount" class="form-control">
-                            </div>
-                            <div style="display:none" class="form-group">
-                                <input type="text" id="id" class="form-control" value="{{id}}" style="display:none">
-                            </div>
-                        </form>
+                        <div class="form-group">
+                            <input type="text" name="inputAmount" class="form-control">
+                            <input type="text" name="id" class="form-control" value="{{id}}" style="display:none">
+                        </div>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-secondary" id="btn-addAmount">수량 추가</button>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-secondary">수량 추가</button>
+                        </div>
                     </td>
-                </tr>
+                </form>
+            </tr>
         {{/stocks}}
         </tbody>
     </table>
