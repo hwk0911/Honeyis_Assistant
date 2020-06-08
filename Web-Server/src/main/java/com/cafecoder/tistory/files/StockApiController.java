@@ -1,16 +1,10 @@
 package com.cafecoder.tistory.files;
 
-import com.cafecoder.tistory.user.Users;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Map;
 import java.util.StringTokenizer;
 
 @Controller
@@ -46,13 +40,20 @@ public class StockApiController {
         System.out.println(size);
         System.out.println(amount);
 
+        StringTokenizer colorToken = new StringTokenizer(color, ",");
+
         if(size.length() == 0) {
-            size = "FREE";
+            for(int index = 0, to = colorToken.countTokens() ; index < to ; ++index) {
+                size += "FREE,";
+            }
         }
 
-        StringTokenizer colorToken = new StringTokenizer(color, ",");
+        StringTokenizer sizeToken = new StringTokenizer(size, ",");
         StringTokenizer amountToken = new StringTokenizer(amount, ",");
 
+        if(colorToken.countTokens() > sizeToken.countTokens() || colorToken.countTokens() > amountToken.countTokens()) {
+            return "redirect:/users/stock";
+        }
 
         while(colorToken.hasMoreTokens()) {
             try {
@@ -61,7 +62,7 @@ public class StockApiController {
                         .client(client)
                         .productName(productName)
                         .color(colorToken.nextToken())
-                        .size(size)
+                        .size(sizeToken.nextToken())
                         .amount(Integer.parseInt(amountToken.nextToken()))
                         .build();
 
