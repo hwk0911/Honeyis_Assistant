@@ -1,20 +1,22 @@
 package com.cafecoder.tistory.files;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
+@RequiredArgsConstructor
 @Controller
 public class FileApiController {
     private List<MultipartFile> multipartFiles;
     private List<List<String>> dataList;
     private HashMap<String, HashMap<String, Integer>> orderHashMap;
+    private List<OrderData> orderDataList;
 
-    @PostMapping("/api/va/orderfilesup")
+    @RequestMapping(value = "/api/va/orderfilesup", method = RequestMethod.POST)
     public String getFiles (@RequestParam(value = "files") List<MultipartFile> multipartFiles, Model model) {
         this.multipartFiles = new ArrayList<>();
 
@@ -63,9 +65,9 @@ public class FileApiController {
             System.out.println();
         }
 
-        model.addAttribute("orderData", orderList);
+        this.orderDataList = orderList;
 
-        return "redirect:/users/stock";
+        return "orderList";
     }
 
     private void setOrderHashMap (List<OrderData> orderDataList) {
@@ -97,5 +99,12 @@ public class FileApiController {
         }
 
         this.orderHashMap = retHashMap;
+    }
+
+    @GetMapping("/users/orderList")
+    public String orderList (Model model) {
+        model.addAttribute("orderList", this.orderDataList);
+
+        return "orderList";
     }
 }
