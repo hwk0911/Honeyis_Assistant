@@ -38,17 +38,6 @@ function uploadFiles(e) {
         url: "/api/va/orderfilesup",
         data: formData,
         processData: false,
-        contentType: false,
-        success: function (data) {
-            if (data.result) {
-                alert("Success");
-            }
-            else {
-                alert(data.result);
-            }
-        },
-        err: function (err) {
-            alert(err.status);
-        }
+        contentType: false
     });
 }
