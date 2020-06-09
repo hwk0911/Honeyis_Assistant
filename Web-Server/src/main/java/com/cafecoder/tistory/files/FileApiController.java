@@ -13,7 +13,6 @@ import java.util.*;
 public class FileApiController {
     private List<MultipartFile> multipartFiles;
     private List<List<String>> dataList;
-    private HashMap<String, HashMap<String, Integer>> orderHashMap;
     private List<OrderData> orderDataList;
 
     @RequestMapping(value = "/api/va/orderfilesup", method = RequestMethod.POST)
@@ -45,60 +44,9 @@ public class FileApiController {
             }
         });
 
-        this.setOrderHashMap(orderList);
-
-        Iterator<String> itr = this.orderHashMap.keySet().iterator();
-
-        while(itr.hasNext()) {
-            String productName = itr.next();
-            HashMap<String, Integer> optionMap = this.orderHashMap.get(productName);
-
-            System.out.println(productName);
-            Iterator<String> optionItr = optionMap.keySet().iterator();
-
-            while(optionItr.hasNext()) {
-                String color = optionItr.next();
-
-                System.out.println(color + "\t\t" + optionMap.get(color));
-            }
-
-            System.out.println();
-        }
-
         this.orderDataList = orderList;
 
         return "orderList";
-    }
-
-    private void setOrderHashMap (List<OrderData> orderDataList) {
-        HashMap<String, HashMap<String, Integer>> retHashMap = new HashMap<>();
-        HashMap<String, Integer> optionMap = new HashMap<>();
-
-        for(OrderData orderData : orderDataList) {
-            String productName = orderData.getProductName();
-
-            if(retHashMap.containsKey(productName)) {
-                optionMap = retHashMap.get(productName);
-            }
-            else {
-                optionMap = new HashMap<>();
-            }
-
-            for(String color : orderData.getColor()) {
-                int amount = orderData.getAmount();
-
-                if(optionMap.containsKey(color)) {
-                    optionMap.put(color, optionMap.get(color) + amount);
-                }
-                else {
-                    optionMap.put(color, amount);
-                }
-            }
-
-            retHashMap.put(productName, optionMap);
-        }
-
-        this.orderHashMap = retHashMap;
     }
 
     @GetMapping("/users/orderList")
