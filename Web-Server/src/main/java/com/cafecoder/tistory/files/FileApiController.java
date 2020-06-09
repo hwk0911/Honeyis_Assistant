@@ -55,4 +55,11 @@ public class FileApiController {
 
         return "sendList";
     }
+
+    @GetMapping("/users/orderList")
+    public String orderList (Model model) {
+        model.addAttribute("orderList", this.sendList);
+
+        return "orderList";
+    }
 }
