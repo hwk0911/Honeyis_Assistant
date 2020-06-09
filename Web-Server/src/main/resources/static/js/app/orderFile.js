@@ -35,7 +35,7 @@ function uploadFiles(e) {
 
     $.ajax({
         type: "POST",
-        url: "/api/va/orderfilesup",
+        url: "/api/v1/sendfilesup",
         data: formData,
         processData: false,
         contentType: false

@@ -1,0 +1,25 @@
+<div align="right">
+    <button type="button" class="btn btn-secondary" id = "btn-copy">내용 복사</button>
+</div>
+
+<table class="table table-bordered" id = "listBody">
+        <tbody>
+        {{#sendList}}
+            <tr>
+                <td>{{orderNumber}}</td>
+                <td>{{productName}}</td>
+                <td>{{price}}</td>
+                <td>{{optionData}}</td>
+                <td>{{amount}}</td>
+                <td>{{customer}}</td>
+                <td>{{customerPh}}</td>
+                <td>{{receiver}}</td>
+                <td>{{receiverPh}}</td>
+                <td>{{zipCode}}</td>
+                <td>{{address}}</td>
+                <td>{{note}}</td>
+            </tr>
+        {{/sendList}}
+        </tbody>
+    </table>
+</br>
