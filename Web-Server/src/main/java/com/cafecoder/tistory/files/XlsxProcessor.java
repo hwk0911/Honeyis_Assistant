@@ -54,9 +54,18 @@ public class XlsxProcessor {
                 else {
                     switch (cell.toString()) {
                         case "결제일":
+                        case "주문번호":
                         case "상품명":
+                        case "판매가":
                         case "옵션 정보":
                         case "수량":
+                        case "주문자명":
+                        case "연락처":
+                        case "수취인명":
+                        case "수취인 연락처":
+                        case "우편번호":
+                        case "배송지 주소":
+                        case "배송 메모":
                             this.columns.add(column);
                             break;
                         default:
