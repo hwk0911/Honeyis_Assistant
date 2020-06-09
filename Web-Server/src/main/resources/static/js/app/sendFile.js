@@ -35,20 +35,11 @@ function uploadFiles(e) {
 
     $.ajax({
         type: "POST",
-        url: "/api/va/sendfilesup",
+        url: "/api/v1/sendfilesup",
         data: formData,
         processData: false,
-        contentType: false,
-        success: function (data) {
-            if (data.result) {
-                alert("Success");
-            }
-            else {
-                alert(data.result);
-            }
-        },
-        err: function (err) {
-            alert(err.status);
-        }
+        contentType: false
+    }).done (function (e) {
+        window.location.href = "/users/sendList";
     });
 }
