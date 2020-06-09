@@ -1,25 +1,37 @@
-<div class="container">
-    <table class="table table-hover table-dark">
+<table class="table table-bordered">
         <thead>
         <tr>
-            <th scope="col">주문 날짜</th>
-            <th scope="col" width="400">상품명</th>
-            <th scope="col">색상</th>
-            <th scope="col">사이즈</th>
+            <th scope="col">주문 번호</th>
+            <th scope="col">상품명</th>
+            <th scope="col">판매가</th>
+            <th scope="col">옵션 정보</th>
             <th scope="col">수량</th>
+            <th scope="col">주문자</th>
+            <th scope="col">연락처</th>
+            <th scope="col">수취인</th>
+            <th scope="col">수취인 연락처</th>
+            <th scope="col">우편 번호</th>
+            <th scope="col">배송 주소</th>
+            <th scope="col">배송 메모</th>
         </tr>
         </thead>
         <tbody>
         {{#orderList}}
             <tr>
-                <td>{{orderList.getDate}}</td>
-                <td>{{orderList.getProductName}}</td>
-                <td>{{orderList.getColor}}</td>
-                <td>{{orderList.getSize}}</td>
-                <td>{{orderList.getAmount}}</td>
+                <td>{{orderNumber}}</td>
+                <td>{{productName}}</td>
+                <td>{{price}}</td>
+                <td>{{optionData}}</td>
+                <td>{{amount}}</td>
+                <td>{{customer}}</td>
+                <td>{{customerPh}}</td>
+                <td>{{receiver}}</td>
+                <td>{{receiverPh}}</td>
+                <td>{{zipCode}}</td>
+                <td>{{address}}</td>
+                <td>{{note}}</td>
             </tr>
         {{/orderList}}
         </tbody>
     </table>
-</div>
 </br>

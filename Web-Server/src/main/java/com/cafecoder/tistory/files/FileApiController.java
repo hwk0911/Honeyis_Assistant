@@ -1,20 +1,21 @@
 package com.cafecoder.tistory.files;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
+@RequiredArgsConstructor
 @Controller
 public class FileApiController {
     private List<MultipartFile> multipartFiles;
     private List<List<String>> dataList;
-    private HashMap<String, HashMap<String, Integer>> orderHashMap;
+    private List<OrderData> orderDataList;
 
-    @PostMapping("/api/va/orderfilesup")
+    @RequestMapping(value = "/api/va/orderfilesup", method = RequestMethod.POST)
     public String getFiles (@RequestParam(value = "files") List<MultipartFile> multipartFiles, Model model) {
         this.multipartFiles = new ArrayList<>();
 
@@ -43,59 +44,15 @@ public class FileApiController {
             }
         });
 
-        this.setOrderHashMap(orderList);
+        this.orderDataList = orderList;
 
-        Iterator<String> itr = this.orderHashMap.keySet().iterator();
-
-        while(itr.hasNext()) {
-            String productName = itr.next();
-            HashMap<String, Integer> optionMap = this.orderHashMap.get(productName);
-
-            System.out.println(productName);
-            Iterator<String> optionItr = optionMap.keySet().iterator();
-
-            while(optionItr.hasNext()) {
-                String color = optionItr.next();
-
-                System.out.println(color + "\t\t" + optionMap.get(color));
-            }
-
-            System.out.println();
-        }
-
-        model.addAttribute("orderData", orderList);
-
-        return "redirect:/users/stock";
+        return "orderList";
     }
 
-    private void setOrderHashMap (List<OrderData> orderDataList) {
-        HashMap<String, HashMap<String, Integer>> retHashMap = new HashMap<>();
-        HashMap<String, Integer> optionMap = new HashMap<>();
+    @GetMapping("/users/orderList")
+    public String orderList (Model model) {
+        model.addAttribute("orderList", this.orderDataList);
 
-        for(OrderData orderData : orderDataList) {
-            String productName = orderData.getProductName();
-
-            if(retHashMap.containsKey(productName)) {
-                optionMap = retHashMap.get(productName);
-            }
-            else {
-                optionMap = new HashMap<>();
-            }
-
-            for(String color : orderData.getColor()) {
-                int amount = orderData.getAmount();
-
-                if(optionMap.containsKey(color)) {
-                    optionMap.put(color, optionMap.get(color) + amount);
-                }
-                else {
-                    optionMap.put(color, amount);
-                }
-            }
-
-            retHashMap.put(productName, optionMap);
-        }
-
-        this.orderHashMap = retHashMap;
+        return "orderList";
     }
 }

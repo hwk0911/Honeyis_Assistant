@@ -39,5 +39,9 @@ function uploadFiles(e) {
         data: formData,
         processData: false,
         contentType: false
+    }).done (function (e) {
+        window.location.href = "/users/orderList";
     });
+
+
 }

@@ -9,18 +9,30 @@ import java.util.List;
 public class OrderData {
     private String date;
     private Long dateValue;
+    private String orderNumber;
     private String productName;
+    private Integer price;
+    private String optionData;
     private List<String> color;
     private String size;
     private int amount;
+    private String customer;
+    private String customerPh;
+    private String receiver;
+    private String receiverPh;
+    private String zipCode;
+    private String address;
+    private String note;
 
     public OrderData(List<String> data) {
         this.date = data.get(0);
-        this.productName = data.get(1);
+        this.orderNumber = data.get(1);
+        this.productName = data.get(2);
+        this.price = Integer.parseInt(data.get(3).split("\\.")[0]);
 
-        String option = data.get(2);
+        this.optionData = data.get(4);
         this.color = new ArrayList<>();
-        for(String temp : option.split("/")) {
+        for(String temp : optionData.split("/")) {
             if(!temp.contains("1개") && !temp.contains("단품")) {
                 if(!temp.toUpperCase().equals("FREE")) {
                     this.color.add(temp);
@@ -35,7 +47,14 @@ public class OrderData {
             this.size = "free";
         }
 
-        this.amount = Integer.parseInt(data.get(3).split("\\.")[0]);
+        this.amount = Integer.parseInt(data.get(5).split("\\.")[0]);
+        this.customer = data.get(6);
+        this.customerPh = data.get(7);
+        this.receiver = data.get(8);
+        this.receiverPh = data.get(9);
+        this.zipCode = data.get(10);
+        this.address = data.get(11);
+        this.note = data.get(12);
         this.dateValue = this.getDateValue();
     }
 
@@ -51,39 +70,5 @@ public class OrderData {
         }
 
         return dateTime / 1000;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(this.date + " ");
-        sb.append(this.productName + " ");
-        for(String temp : this.color) {
-            sb.append(temp + " ");
-        }
-        sb.append(this.size + " ");
-        sb.append(this.amount);
-
-        return sb.toString();
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public List<String> getColor() {
-        return color;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public int getAmount() {
-        return amount;
     }
 }
