@@ -1,4 +1,4 @@
-package com.cafecoder.tistory.files;
+package com.cafecoder.tistory.stock;
 
 import lombok.RequiredArgsConstructor;
 import org.hibernate.exception.ConstraintViolationException;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.StringTokenizer;
 
-@Controller
 @RequiredArgsConstructor
+@Controller
 public class StockApiController {
     private final StocksRepository stocksRepository;
 

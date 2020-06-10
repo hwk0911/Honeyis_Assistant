@@ -1,8 +1,6 @@
-package com.cafecoder.tistory.files;
+package com.cafecoder.tistory.stock;
 
-import com.cafecoder.tistory.user.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
