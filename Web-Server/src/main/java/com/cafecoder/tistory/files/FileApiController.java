@@ -1,5 +1,6 @@
 package com.cafecoder.tistory.files;
 
+import com.cafecoder.tistory.user.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,8 @@ public class FileApiController {
     private List<MultipartFile> multipartFiles;
     private List<List<String>> dataList;
     private List<OrderData> sendList;
+
+    private final UsersRepository usersRepository;
 
     @RequestMapping(value = "/api/v1/sendfilesup", method = RequestMethod.POST)
     public String getFiles (@RequestParam(value = "files") List<MultipartFile> multipartFiles, Model model) {
