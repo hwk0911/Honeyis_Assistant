@@ -1,17 +1,14 @@
 package com.cafecoder.tistory.web;
 
-import com.cafecoder.tistory.files.Stocks;
-import com.cafecoder.tistory.files.StocksRepository;
+import com.cafecoder.tistory.stock.StocksRepository;
 import com.cafecoder.tistory.user.Users;
 import com.cafecoder.tistory.user.UsersRepository;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpSession;
-import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 @Controller
