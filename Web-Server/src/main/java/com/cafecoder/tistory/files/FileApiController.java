@@ -1,5 +1,6 @@
 package com.cafecoder.tistory.files;
 
+import com.cafecoder.tistory.stock.OrderData;
 import com.cafecoder.tistory.user.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
