@@ -87,4 +87,8 @@ public class IndexController {
 
         return "stockList";
     }
+
+    public String getUserId() {
+        return userId;
+    }
 }
