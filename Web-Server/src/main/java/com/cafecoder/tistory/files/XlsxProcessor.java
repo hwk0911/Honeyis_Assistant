@@ -1,5 +1,6 @@
 package com.cafecoder.tistory.files;
 
+import com.cafecoder.tistory.stock.Order;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -13,7 +14,9 @@ import java.util.List;
 public class XlsxProcessor {
     private List<XSSFWorkbook> workbooks;
     private List<List<String>> dataList;
+    private List<Order> orderDataList;
     private List<Integer> columns;
+    private List<Integer> orderColumns;
 
     public XlsxProcessor(List<MultipartFile> files) {
         this.workbooks = new ArrayList<>();
@@ -36,6 +39,7 @@ public class XlsxProcessor {
 
     private void setColumns () {
         this.columns = new ArrayList<>();
+        this.orderColumns = new ArrayList<>();
 
         for(XSSFWorkbook workbook : workbooks) {
             int index = 0;
@@ -53,12 +57,13 @@ public class XlsxProcessor {
                 }
                 else {
                     switch (cell.toString()) {
-                        case "결제일":
-                        case "주문번호":
                         case "상품명":
-                        case "판매가":
                         case "옵션 정보":
                         case "수량":
+                            this.orderColumns.add(column);
+                        case "결제일":
+                        case "주문번호":
+                        case "판매가":
                         case "주문자명":
                         case "연락처":
                         case "수취인명":
@@ -95,6 +100,31 @@ public class XlsxProcessor {
                 this.dataList.add(tempData);
             }
         }
+    }
+
+    public void setOrderList () {
+        this.orderDataList = new ArrayList<>();
+
+        for(XSSFWorkbook workbook : workbooks) {
+            XSSFSheet sheet = workbook.getSheetAt(workbook.getNumberOfSheets() - 1);
+
+            int maxRow = sheet.getPhysicalNumberOfRows();
+
+            for(int index = 1 ; index < maxRow ; ++index) {
+                List<String> tempData = new ArrayList<>();
+                XSSFRow row = sheet.getRow(index);
+
+                for(int cellNum : this.orderColumns) {
+                    XSSFCell cell = row.getCell(cellNum);
+                    tempData.add(cell.toString());
+                }
+                this.dataList.add(tempData);
+            }
+        }
+    }
+
+    public void checkOrderList (List<String> data) {
+
     }
 
     public List<List<String>> getDataList () {
