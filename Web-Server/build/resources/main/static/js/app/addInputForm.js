@@ -12,7 +12,7 @@ var addForm = {
     addInput: function () {
         var my_tbody = document.getElementById('inputForm');
         var row = my_tbody.insertRow(my_tbody.rows.length); // 하단에 추가
-        var cell1 = row.insertCell(0);
+        var cell1 = row.insertCell(0);:w
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
         var cell4 = row.insertCell(3);
