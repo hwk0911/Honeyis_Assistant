@@ -5,11 +5,13 @@ import java.util.Map;
 import java.util.Set;
 
 public class Order {
+    private int id;
     private String productName;
     private HashMap<String, Integer> option;
     private Set<HashMap.Entry<String,Integer>> optionEntry;
 
-    public Order(String productName, String option, Integer amount) {
+    public Order(int id, String productName, String option, Integer amount) {
+        this.id = id;
         this.productName = productName;
         this.option = new HashMap<>();
 
