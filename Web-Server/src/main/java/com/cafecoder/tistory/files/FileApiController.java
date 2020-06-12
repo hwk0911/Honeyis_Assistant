@@ -65,6 +65,10 @@ public class FileApiController {
 
     @GetMapping("/users/orderList")
     public String orderList (Model model) {
+        for(int index = 0, size = this.orderList.size() ; index < size ; ++index) {
+            this.orderList.get(index).updateSet();
+        }
+
         model.addAttribute("orderList", this.orderList);
 
         return "orderList";
