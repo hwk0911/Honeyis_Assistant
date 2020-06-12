@@ -35,6 +35,7 @@ public class XlsxProcessor {
 
         this.setColumns();
         this.dataProcessor();
+        this.setOrderList();
     }
 
     private void setColumns () {
@@ -118,16 +119,27 @@ public class XlsxProcessor {
                     XSSFCell cell = row.getCell(cellNum);
                     tempData.add(cell.toString());
                 }
-                this.dataList.add(tempData);
+                addOrderList(tempData);
             }
         }
     }
 
-    public void checkOrderList (List<String> data) {
+    public void addOrderList (List<String> data) {
+        for(int index = 0, size = this.orderDataList.size() ; index < size ; ++index) {
+            if(this.orderDataList.get(index).getProductName().contains(data.get(0))) {
+                orderDataList.get(index).addOption(data.get(1), Integer.parseInt(data.get(2).split("\\.")[0]));
+                return;
+            }
+        }
 
+        this.orderDataList.add(new Order(data.get(0), data.get(1), Integer.parseInt(data.get(2).split("\\.")[0])));
     }
 
     public List<List<String>> getDataList () {
         return this.dataList;
+    }
+
+    public List<Order> getOrderDataList () {
+        return this.orderDataList;
     }
 }
