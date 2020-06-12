@@ -1,5 +1,6 @@
 package com.cafecoder.tistory.files;
 
+import com.cafecoder.tistory.stock.Order;
 import com.cafecoder.tistory.stock.OrderData;
 import com.cafecoder.tistory.user.UsersRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.*;
 public class FileApiController {
     private List<MultipartFile> multipartFiles;
     private List<List<String>> dataList;
+    private List<Order> orderList;
     private List<OrderData> sendList;
 
     private final UsersRepository usersRepository;
@@ -34,6 +36,7 @@ public class FileApiController {
         XlsxProcessor xlsxProcessor = new XlsxProcessor(this.multipartFiles);
 
         this.dataList = xlsxProcessor.getDataList();
+        this.orderList = xlsxProcessor.getOrderDataList();
 
         List<OrderData> sendList = new ArrayList<>();
 
@@ -62,7 +65,7 @@ public class FileApiController {
 
     @GetMapping("/users/orderList")
     public String orderList (Model model) {
-        model.addAttribute("orderList", this.sendList);
+        model.addAttribute("orderList", this.orderList);
 
         return "orderList";
     }
