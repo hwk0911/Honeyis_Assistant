@@ -132,7 +132,7 @@ public class XlsxProcessor {
             }
         }
 
-        this.orderDataList.add(new Order(data.get(0), data.get(1), Integer.parseInt(data.get(2).split("\\.")[0])));
+        this.orderDataList.add(new Order(this.orderDataList.size() + 1,data.get(0), data.get(1), Integer.parseInt(data.get(2).split("\\.")[0])));
     }
 
     public List<List<String>> getDataList () {
