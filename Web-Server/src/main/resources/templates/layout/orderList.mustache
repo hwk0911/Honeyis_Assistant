@@ -1,23 +1,25 @@
 <div class="container">
-    <table class="table table-hover table-dark">
-        <thead>
-        <tr>
-            <th scope="col">결제일</th>
-            <th scope="col">상품명</th>
-            <th scope="col">옵션 정보</th>
-            <th scope="col">수량</th>
-        </tr>
-        </thead>
-        <tbody>
-        {{#orderList}}
-            <tr>
-                <td>{{date}}</td>
-                <td>{{productName}}</td>
-                <td>{{optionData}}</td>
-                <td>{{amount}}</td>
-            </tr>
-        {{/orderList}}
-        </tbody>
-    </table>
-</div>>
-</br>
+    <div align="right">
+        <button type="button" class="btn btn-secondary" id="btn-copy">내용 복사</button>
+    </div>
+    <div>
+        <table class="table table-hover table-dark" id="listBody">
+            {{#orderList}}
+                <thead>
+                <tr>
+                    <th scope="col">{{productName}}</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#optionEntry}}
+                    <tr>
+                        <td>{{key}}</td>
+                        <td>{{value}}</td>
+                    </tr>
+                {{/optionEntry}}
+                </tbody>
+            {{/orderList}}
+        </table>
+    </div>
+</div>
