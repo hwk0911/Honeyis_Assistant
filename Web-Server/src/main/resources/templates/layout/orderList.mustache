@@ -1,25 +1,33 @@
 <div class="container">
-    <div align="right">
-        <button type="button" class="btn btn-secondary" id="btn-copy">내용 복사</button>
-    </div>
-    <div>
-        <table class="table table-hover table-dark" id="listBody">
+    <form action="/api/v1/sort" method="get">
+        <div align="right" class="form-group">
+            <button type="submit" class="btn btn-secondary">발주처 목록으로 정렬</button>
+            <button type="button" class="btn btn-secondary" id="btn-copy">내용 복사</button>
+        </div>
+        <table class="table table-borderless table-dark" id="listBody">
             {{#orderList}}
-                <thead>
-                <tr>
-                    <th scope="col">{{productName}}</th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody>
-                {{#optionEntry}}
+                <div class="form-group">
+                    <thead>
                     <tr>
-                        <td>{{key}}</td>
-                        <td>{{value}}</td>
+                        <th scope="col">{{productName}}<input type="text" class="form-control" value="{{productName}}" name = "productName" style="display:none;"></th>
+                        <th scope="col"><input type="text" name="client" value="{{client}}" class="form-control"></th>
+                        <th scope="col"><input type="text" value="{{optionEntry}}" name = "option" style="display:none;"></th>
                     </tr>
-                {{/optionEntry}}
-                </tbody>
+                    </thead>
+                    <tbody>
+                    {{#optionEntry}}
+                        <tr>
+                            <td>{{key}}</td>
+                            <td>{{value}}</td>
+                            <td></td>
+                        </tr>
+                    {{/optionEntry}}
+                    <tr>
+                        <th><input type="text" value="." style="display:none" class="form-control" name="name"></th>
+                    </tr>
+                    </tbody>
+                </div>
             {{/orderList}}
         </table>
-    </div>
+    </form>
 </div>

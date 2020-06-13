@@ -9,11 +9,19 @@ public class Order {
     private String productName;
     private HashMap<String, Integer> option;
     private Set<HashMap.Entry<String,Integer>> optionEntry;
+    private String client = "";
+
+    public Order(String productName, String client, HashMap<String, Integer> option) {
+        this.productName = productName;
+        this.client = client;
+        this.optionEntry = option.entrySet();
+    }
 
     public Order(int id, String productName, String option, Integer amount) {
         this.id = id;
         this.productName = productName;
         this.option = new HashMap<>();
+
 
         String[] tempOption = option.split("/");
 
@@ -37,6 +45,9 @@ public class Order {
             }
         }
     }
+    public void setClient (String client) {
+        this.client = client;
+    }
 
     public String getProductName () {
         return this.productName;
@@ -44,5 +55,9 @@ public class Order {
 
     public void updateSet () {
         this.optionEntry = this.option.entrySet();
+    }
+
+    public String getClient () {
+        return this.client;
     }
 }
