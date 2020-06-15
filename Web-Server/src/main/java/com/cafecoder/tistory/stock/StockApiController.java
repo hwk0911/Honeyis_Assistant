@@ -88,12 +88,14 @@ public class StockApiController {
     }
 
     @RequestMapping(value = "/api/v1/sort", method = RequestMethod.GET)
-    public String sort(@RequestParam("productName") List<String> productNames, @RequestParam("client") List<String> client, @RequestParam("option") List<HashMap<String, Integer>> option, Model model) {
+    public String sort(/*@RequestParam("productName") List<String> productNames, @RequestParam("client") List<String> client,*/ @RequestParam("option") List<Order> option) {
         List<Order> orderList = new ArrayList<>();
 
-        for(int index = 0, size = productNames.size() ; index < size ; ++index) {
-            orderList.add(new Order(productNames.get(index), client.get(index), option.get(index)));
-        }
+        System.out.println(option.get(0).toString());
+
+        //for(int index = 0, size = productNames.size() ; index < size ; ++index) {
+           //StringTokenizer stringTokenizer = new StringTokenizer(optionList.get(index), ", ");
+        //}
 
         Collections.sort(orderList, new Comparator<Order>() {
             @Override
@@ -102,14 +104,8 @@ public class StockApiController {
             }
         });
 
-        model.addAttribute("orderList", orderList);
+        //model.addAttribute("orderList", orderList);
 
         return "orderList";
     }
 }
-
-
-/*
-방식을 생각해봐야함.... List productName, List Color, List size, List amount ...
-form 으로 받아서, .. 기준으로 끊어서 데이터 입력.
- */
