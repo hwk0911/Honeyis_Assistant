@@ -1,5 +1,6 @@
 package com.cafecoder.tistory.stock;
 
+import com.cafecoder.tistory.web.IndexController;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import java.util.*;
 @Controller
 public class StockApiController {
     private final StocksRepository stocksRepository;
+    private final ClientRepository clientRepository;
 
     @RequestMapping(value = "/api/v1/addAmount", method = RequestMethod.POST)
     public String addAmount(@RequestParam("id") Long id, @RequestParam("inputAmount") String inputAmount) throws Exception {
@@ -107,5 +109,22 @@ public class StockApiController {
         //model.addAttribute("orderList", orderList);
 
         return "orderList";
+    }
+
+    @RequestMapping(value = "/api/v1/search/client", method = RequestMethod.GET)
+    public void searchClient (@RequestParam("client") String client, Model model) {
+        List<Client> clientList = this.clientRepository.findAll();
+
+        List<Client> clientModel = new ArrayList<>();
+
+        for(Client cli : clientList) {
+            if(cli.getClient().contains(client) || client.contains(cli.getClient())) {
+                clientModel.add(cli);
+            }
+        }
+
+        model.addAttribute("clientList", clientModel);
+
+
     }
 }

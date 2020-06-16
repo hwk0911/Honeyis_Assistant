@@ -9,7 +9,7 @@
         <div class="form-group">
             <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="발주처 검색" aria-label="발주처 검색"
-                       aria-describedby="button-addon2">
+                       aria-describedby="button-addon2" name = "client">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Button</button>
                 </div>
@@ -19,7 +19,10 @@
 
     <form action="/api/v1/addProduct" method="post">
         {{#clientList}}
-
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="clientRadio" value="{{id}}">
+                <label class="form-check-label" for="clientRadio">{{client}}</label>
+            </div>
         {{/clientList}}
         </br>
         <table class="table table-hover table-dark">
