@@ -18,11 +18,11 @@ public class Client {
     private String client;
 
     @Column(nullable = false)
-    private String userId;
+    private Long uNo;
 
     @Builder
-    public Client(String client, String userId) {
+    public Client(String client, Long uNo) {
         this.client = client;
-        this.userId = userId;
+        this.uNo = uNo;
     }
 }

@@ -14,46 +14,19 @@ public class Stocks {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String userId;
+    @Column(nullable = false)
+    private Long uNo;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String client;
+    @Column(nullable = false)
+    private Long cNo;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(nullable = false)
     private String productName;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String color;
-
-    @Column(columnDefinition = "TEXT")
-    private String size;
-
-    @Column(columnDefinition = "INT")
-    private int amount;
-
     @Builder
-    public Stocks(String userId, String client, String productName, String color, String size, int amount) {
-        this.client = client;
-        this.userId = userId;
+    public Stocks(Long uNo, Long cNo, String productName) {
+        this.uNo = uNo;
+        this.cNo = cNo;
         this.productName = productName;
-        this.color = color;
-
-        if(size == null) {
-            this.size = "FREE";
-        }
-        else {
-            this.size = size;
-        }
-        this.amount = amount;
-    }
-
-    public void addAmount (int addAmount) {
-        this.amount = this.amount + addAmount;
-    }
-
-    @Override
-    public String toString() {
-        return "[" + this.productName + " " + this.color + " " + this.size + " " + this.amount + "]";
     }
 }
